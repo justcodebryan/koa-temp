@@ -29,7 +29,7 @@ type BaseResponse = {
   msg?: string
 }
 
-export type ErrorResponse<TError extends BaseError = Error> = BaseResponse & {
+export type ErrorResponse<TError extends Error = any> = BaseResponse & {
   err?: TError
   errorCode: number
 }

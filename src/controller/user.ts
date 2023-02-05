@@ -1,27 +1,35 @@
 import type { Context } from 'koa'
 import UserService from '@/service/user'
-import resolver from '@/utils/Resolver'
-import { getOffsetAndLimit } from '@/utils/pagination'
+import resolver from '@/utils/resolver'
+import Pagination from '@/utils/pagination'
 import type { UserRequestData } from '@/types/user'
 
-const service = new UserService()
-
 export const getUserList = async (ctx: Context) => {
+  const service = new UserService()
+
   const {
     request: { query },
   } = ctx
 
   const { current, page_size } = query
 
-  const { offset, limit } = getOffsetAndLimit(current, page_size)
-  const result = await service.users(offset, limit)
+  const total = await service.getUserTotal()
+  const page = Number(current)
+  const pageSize = Number(page_size)
+
+  const pagination = new Pagination(page, pageSize, total)
+
+  const result = await service.getUserList(pagination.startIndex, pagination.endIndex)
 
   ctx.body = resolver.json({
-    ...result,
+    items: result,
+    total,
   })
 }
 
 export const getUserDetail = async (ctx: Context) => {
+  const service = new UserService()
+
   const {
     params: { id },
   } = ctx
@@ -32,6 +40,8 @@ export const getUserDetail = async (ctx: Context) => {
 }
 
 export const createUser = async (ctx: Context) => {
+  const service = new UserService()
+
   const {
     request: { body },
   } = ctx
@@ -50,6 +60,8 @@ export const createUser = async (ctx: Context) => {
 }
 
 export const updateUser = async (ctx: Context) => {
+  const service = new UserService()
+
   const {
     request: { body },
     params,
@@ -75,6 +87,8 @@ export const updateUser = async (ctx: Context) => {
 }
 
 export const deleteUser = async (ctx: Context) => {
+  const service = new UserService()
+
   const { params } = ctx
 
   const { id } = params

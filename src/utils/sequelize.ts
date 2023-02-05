@@ -10,9 +10,17 @@ const sequelize = new Sequelize(database, username, password, {
   port: Number(port) || DEFAULT_PORT,
 })
 
-// sequelize.sync().then(() => {
-//   console.log('[db]: All models were synchronized successfully.')
-// })
+// source: https://stackoverflow.com/a/74472643
+// Do not drop the table but all the tables updates.
+sequelize
+  .sync({ force: false, alter: true })
+  .then(() => {
+    console.log('[db]: All models were updated successfully.')
+  })
+  .catch((err) => {
+    console.log(`[db]: Database sync error.\n`)
+    console.log(`[error]: ${err}.`)
+  })
 
 sequelize
   .authenticate()

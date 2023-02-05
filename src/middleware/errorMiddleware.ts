@@ -1,6 +1,6 @@
 import type Koa from 'koa'
 import { ErrorCodeEnum, getErrorException } from '@/config/exceptionConfig'
-import resolver from '@/utils/Resolver'
+import resolver from '@/utils/resolver'
 
 const errorHandler = async (ctx: Koa.Context, next: () => Promise<any>) => {
   try {

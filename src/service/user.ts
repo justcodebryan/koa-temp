@@ -3,14 +3,12 @@ import User from '@/model/user'
 import type { UserRequestData } from '@/types/user'
 
 class UserService {
-  async users(offset = DEFAULT_OFFSET, limit = DEFAULT_LIMIT) {
-    const data = await User.findAll({ offset, limit })
-    const total = await User.count()
+  async getUserList(offset = DEFAULT_OFFSET, limit = DEFAULT_LIMIT) {
+    return User.findAll({ offset, limit })
+  }
 
-    return {
-      items: data,
-      total,
-    }
+  async getUserTotal() {
+    return User.count()
   }
 
   async user(id: string) {

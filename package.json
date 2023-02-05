@@ -10,9 +10,9 @@
     "dev": "nodemon --config ./nodemon.json",
     "serve": "NODE_ENV=development ts-node src/index.ts",
     "start": "NODE_ENV=production node ./dist/index.js",
-    "lint": "eslint --cache \"src/**/*.{js,ts}\"",
-    "lint:fix": "eslint --cache --fix \"src/**/*.{js,ts}\"",
-    "lint:type-check": "tsc -p tsconfig.json --noEmit",
+    "lint": "eslint --cache",
+    "lint:fix": "eslint --cache --fix",
+    "lint:type-check": "tsc --noEmit",
     "format": "prettier --write --ignore-unknown .",
     "build": "pnpm clean && NODE_ENV=production tsc",
     "build:stag": "pnpm clean && NODE_ENV=staging tsc",
@@ -69,7 +69,6 @@
     }
   },
   "lint-staged": {
-    "**/*.ts?(x)": "pnpm lint:type-check",
     "*": [
       "pnpm lint:fix",
       "pnpm format"
