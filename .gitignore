@@ -6,4 +6,5 @@ node_modules
 dev
 dist
 .env.development
-.env.local.*
+.env.local
+.env.*.local
