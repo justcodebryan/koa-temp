@@ -13,7 +13,7 @@
     "lint": "eslint --cache \"src/**/*.{js,ts}\"",
     "lint:fix": "eslint --cache --fix \"src/**/*.{js,ts}\"",
     "lint:type-check": "tsc --noEmit",
-    "format": "prettier --write .",
+    "format": "prettier --write . \"src/**/*.{js,ts}\"",
     "build": "pnpm clean && NODE_ENV=production tsc",
     "build:stag": "pnpm clean && NODE_ENV=staging tsc",
     "build:dev": "pnpm clean && NODE_ENV=dev tsc",
