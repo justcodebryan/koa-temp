@@ -1,4 +1,4 @@
-import Koa from 'koa'
+import type Koa from 'koa'
 
 const initCore = (app: Koa, port) => {
   app.listen(port)

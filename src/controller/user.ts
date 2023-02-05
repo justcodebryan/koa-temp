@@ -1,8 +1,8 @@
-import Koa from 'koa'
+import type { Context } from 'koa'
 import UserService from '@/service/user'
 import resolver from '@/utils/Resolver'
-import { Context } from '@/types/base'
 import { getOffsetAndLimit } from '@/utils/pagination'
+import type { UserRequestData } from '@/types/user'
 
 const service = new UserService()
 
@@ -21,7 +21,7 @@ export const getUserList = async (ctx: Context) => {
   })
 }
 
-export const getUserDetail = async (ctx: Koa.Context) => {
+export const getUserDetail = async (ctx: Context) => {
   const {
     params: { id },
   } = ctx
@@ -31,12 +31,12 @@ export const getUserDetail = async (ctx: Koa.Context) => {
   ctx.body = resolver.json(result)
 }
 
-export const createUser = async (ctx) => {
+export const createUser = async (ctx: Context) => {
   const {
     request: { body },
   } = ctx
 
-  const { name, password, gender, status, email } = body
+  const { name, password, gender, status, email } = body as UserRequestData
 
   const result = await service.createUser({
     name,
@@ -49,14 +49,14 @@ export const createUser = async (ctx) => {
   ctx.body = resolver.json(result)
 }
 
-export const updateUser = async (ctx) => {
+export const updateUser = async (ctx: Context) => {
   const {
     request: { body },
     params,
   } = ctx
 
   const { id } = params
-  const { name, password, gender, status, email, remark } = body
+  const { name, password, gender, status, email, remark } = body as UserRequestData
 
   try {
     await service.updateUser(id, {
@@ -74,7 +74,7 @@ export const updateUser = async (ctx) => {
   }
 }
 
-export const deleteUser = async (ctx) => {
+export const deleteUser = async (ctx: Context) => {
   const { params } = ctx
 
   const { id } = params

@@ -15,7 +15,7 @@ class Resolver {
   }
 
   // TODO: Type restrict
-  public fail(msg = 'fail', errorCode = 10001, err = {}): ErrorResponse {
+  public fail(msg = 'fail', errorCode = 10001, err = { name: 'Error', message: 'Request Failed' }): ErrorResponse {
     return {
       msg,
       err,

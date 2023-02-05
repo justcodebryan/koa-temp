@@ -22,6 +22,7 @@ module.exports = {
         ignoreDeclarationSort: true,
       },
     ],
+    '@typescript-eslint/consistent-type-imports': 'warn',
   },
   ignorePatterns: ['node_modules', 'build', 'dist', 'public'],
 }

@@ -1,5 +1,5 @@
 import * as dotenv from 'dotenv'
-import { Options } from 'sequelize'
+import type { Options } from 'sequelize'
 import { isProd } from './siteConfig'
 
 dotenv.config({ path: `.env.${process.env.NODE_ENV}` })

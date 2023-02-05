@@ -1,5 +1,6 @@
 import { DEFAULT_LIMIT, DEFAULT_OFFSET } from '@/utils/constant'
 import User from '@/model/user'
+import type { UserRequestData } from '@/types/user'
 
 class UserService {
   async users(offset = DEFAULT_OFFSET, limit = DEFAULT_LIMIT) {
@@ -12,11 +13,11 @@ class UserService {
     }
   }
 
-  async user(id) {
+  async user(id: string) {
     return User.findByPk(id)
   }
 
-  async createUser({ name, password, gender, email, status, remark = null }) {
+  async createUser({ name, password, gender, email, status, remark = null }: UserRequestData) {
     return User.create({
       name,
       password,
@@ -27,7 +28,7 @@ class UserService {
     })
   }
 
-  async updateUser(id, { name, password, gender, email, status, remark }) {
+  async updateUser(id: string, { name, password, gender, email, status, remark }: UserRequestData) {
     return User.update(
       {
         name,
@@ -45,7 +46,7 @@ class UserService {
     )
   }
 
-  async deleteUser(id) {
+  async deleteUser(id: string) {
     return User.destroy({
       where: {
         id,

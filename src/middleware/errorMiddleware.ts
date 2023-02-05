@@ -1,4 +1,4 @@
-import Koa from 'koa'
+import type Koa from 'koa'
 import { ErrorCodeEnum, getErrorException } from '@/config/exceptionConfig'
 import resolver from '@/utils/Resolver'
 

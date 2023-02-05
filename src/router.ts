@@ -1,9 +1,10 @@
-import Koa from 'koa'
+import type Koa from 'koa'
+import type { Context, DefaultState } from 'koa'
 import Router from 'koa-router'
 import * as UserController from './controller/user'
 import { DEFAULT_PREFIX } from './utils/constant'
 
-const router = new Router({
+const router = new Router<DefaultState, Context>({
   prefix: DEFAULT_PREFIX,
 })
 

@@ -7,3 +7,5 @@ export type User = {
   remark?: string
   status: number
 }
+
+export type UserRequestData = Partial<User>

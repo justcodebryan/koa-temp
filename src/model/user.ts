@@ -1,4 +1,5 @@
-import { CreationOptional, DataTypes, InferAttributes, InferCreationAttributes, Model } from 'sequelize'
+import type { CreationOptional, InferAttributes, InferCreationAttributes, Model } from 'sequelize'
+import { DataTypes } from 'sequelize'
 import sequelize from '@/utils/sequelize'
 
 export interface UserModel extends Model<InferAttributes<UserModel>, InferCreationAttributes<UserModel>> {
