@@ -12,7 +12,7 @@
     "start": "NODE_ENV=production node ./dist/index.js",
     "lint": "eslint --cache \"src/**/*.{js,ts}\"",
     "lint:fix": "eslint --cache --fix \"src/**/*.{js,ts}\"",
-    "lint:type-check": "tsc --noEmit",
+    "lint:type-check": "tsc -p tsconfig.json --noEmit",
     "format": "prettier --write --ignore-unknown .",
     "build": "pnpm clean && NODE_ENV=production tsc",
     "build:stag": "pnpm clean && NODE_ENV=staging tsc",
@@ -69,6 +69,7 @@
     }
   },
   "lint-staged": {
+    "**/*.ts?(x)": "pnpm lint:type-check",
     "*": [
       "pnpm lint:fix",
       "pnpm format"
